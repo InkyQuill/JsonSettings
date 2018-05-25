@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <TargetFrameworks>netstandard2.0;netstandard1.6;net45;net462;net461;net47;net4;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.6;net45;netcoreapp2.0</TargetFrameworks>
     <AssemblyVersion>1.0.5.0</AssemblyVersion>
     <FileVersion>1.0.5.0</FileVersion>
     <Version>1.0.5</Version>
@@ -43,31 +43,18 @@ Encrypt, Encode and have full control over hardcoded / dynamic settings.</Descri
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' OR '$(TargetFramework)' == 'netcoreapp2.0'  Or '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>$(DefineConstants);NETCORE;</DefineConstants>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' OR '$(TargetFramework)' == 'netcoreapp2.0'  Or '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>$(DefineConstants);CROSSPLATFORM;</DefineConstants>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net461' Or '$(TargetFramework)' == 'net4' Or '$(TargetFramework)' == 'net47'  Or '$(TargetFramework)' == 'net35'  Or '$(TargetFramework)' == 'net452'  Or '$(TargetFramework)' == 'net451'  Or '$(TargetFramework)' == 'net403'  Or '$(TargetFramework)' == 'net40'  Or '$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net11'">
     <DefineConstants>$(DefineConstants);WINDOWS;</DefineConstants>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition="'$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net461' Or '$(TargetFramework)' == 'net4' Or '$(TargetFramework)' == 'net47'  Or '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>$(DefineConstants);NET;</DefineConstants>
   </PropertyGroup>
-
-  
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net4'">
-  </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
     <PackageReference Include="System.AppDomain">
@@ -78,14 +65,5 @@ Encrypt, Encode and have full control over hardcoded / dynamic settings.</Descri
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-
-  </ItemGroup>
 
 </Project>
