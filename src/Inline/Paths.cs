@@ -121,26 +121,34 @@ namespace nucs.JsonSettings.Inline {
         ///     Normalizes path to prepare for comparison or storage
         /// </summary>
         public static string NormalizePath(string path, bool forEquality=false) {
-
-            path = path.Replace("/", "\\")
+        
+            path = path
                 .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             if (forEquality) {
 #if CROSSPLATFORM
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) path = path.ToUpperInvariant();
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    path = path.Replace('/', '\\');
+                    path = path.ToUpperInvariant();
+                }
 #else
                 path = path.ToUpperInvariant();
 #endif
             }
 
-            if (path.Contains("\\"))
+            if (path.Contains("\\") || path.Contains("/"))
                 if (Uri.IsWellFormedUriString(path, UriKind.RelativeOrAbsolute))
                     try {
                         path = Path.GetFullPath(new Uri(path).LocalPath);
                     } catch { }
-            //is root, fix.
-            if ((path.Length == 2) && (path[1] == ':') && char.IsLetter(path[0]))
-                path = path + "\\";
-
+#if CROSSPLATFORM
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                //is root, fix.
+                if ((path.Length == 2) && (path[1] == ':') && char.IsLetter(path[0]))
+                    path = path + "\\";
+            }
+#endif
             return path;
         }
 
